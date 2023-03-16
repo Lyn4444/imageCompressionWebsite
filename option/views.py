@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse, JsonResponse
-from utils.jsonUtils import CreateJson
+from utils.JsonUtils import CreateJson
 
 
 def index(request):
@@ -12,4 +12,5 @@ def index(request):
         'patient_id': '19000347',
         '诊断': '上呼吸道感染',
     }
-    return JsonResponse(CreateJson().dict2json(data))
+    _json = CreateJson()
+    return HttpResponse(_json.dict2json(data), content_type="application/json")

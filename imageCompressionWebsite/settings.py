@@ -55,7 +55,7 @@ MIDDLEWARE = [
 
 
     # 自定义中间件
-    "imageCompressionWebsite.middleware.ExceptionMiddleware.ExceptionMiddleware",
+    "imageCompressionWebsite.middleware.EncryptionMiddleware.EncryptionMiddleware",
 ]
 
 ROOT_URLCONF = "imageCompressionWebsite.urls"
