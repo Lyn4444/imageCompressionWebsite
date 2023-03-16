@@ -43,16 +43,25 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+
+    # vue跨越中间件
+    "corsheaders.middleware.CorsMiddleware",
+    
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 
-    #"imageCompressionWebsite.utils.middlewares",
+
+    # 自定义中间件
+    "imageCompressionWebsite.middleware.ExceptionMiddleware.ExceptionMiddleware",
 ]
 
 ROOT_URLCONF = "imageCompressionWebsite.urls"
+
+# 允许与vue跨越
+CORS_ORIGIN_ALLOW_ALL = True
 
 TEMPLATES = [
     {

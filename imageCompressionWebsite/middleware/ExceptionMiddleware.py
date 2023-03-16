@@ -3,7 +3,7 @@ from django.utils.deprecation import MiddlewareMixin
 from django.shortcuts import render, HttpResponse
 
 
-class ExeceptionMiddleware(MiddlewareMixin):
+class ExceptionMiddleware(MiddlewareMixin):
     def process_request(self, request):
         pass
         # print("md1  process_request 方法。", id(request))  # 在视图之前执行

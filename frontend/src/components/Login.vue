@@ -1,19 +1,16 @@
 <template>
-  <div id="app">
+  <div id="login">
+    <p>login</p>
     <router-view/>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: "Login"
 }
 </script>
 
-<style>
-#app {
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
+<style scoped>
+
 </style>
