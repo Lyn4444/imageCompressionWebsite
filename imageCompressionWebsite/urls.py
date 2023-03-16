@@ -15,8 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
+from .views import redirect_view_home
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('', include('option.urls'))
+    path('api/', include('option.urls')),
+    path('', redirect_view_home),
+    path(r'home/', TemplateView.as_view(template_name="index.html")),
+    path(r'login/', TemplateView.as_view(template_name="index.html")),
 ]

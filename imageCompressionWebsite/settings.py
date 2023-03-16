@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -63,11 +64,11 @@ ROOT_URLCONF = "imageCompressionWebsite.urls"
 # 允许与vue跨越
 CORS_ORIGIN_ALLOW_ALL = True
 
+# templates 绑定vue页面
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / 'templates']
-        ,
+        "DIRS": [os.path.join(BASE_DIR, 'frontend/dist')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -78,6 +79,11 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+# 配置静态文件的搜索路径
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "frontend/dist/static"),
 ]
 
 WSGI_APPLICATION = "imageCompressionWebsite.wsgi.application"
