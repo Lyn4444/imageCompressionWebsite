@@ -1,5 +1,5 @@
 <template>
-  <div id="home">
+  <div id="homeimage">
 <!--    <div class="breadcrumb">-->
 <!--      <div class="breadcrumb-content">-->
 <!--        <el-breadcrumb separator="/" style="max-height: 39px;min-height: 34px;">-->
@@ -13,44 +13,35 @@
 <!--      </div>-->
 <!--    </div>-->
     <div class="upload-content">
-      <div class="upload-content">
-        <div class="upload-box">
-          <el-upload class="upload-demo" drag action="">
-            <i class="el-icon-upload"></i>
-            <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-          </el-upload>
-        </div>
-    </div>
+      <div class="upload-box">
+        <el-upload class="upload-demo" drag action="">
+          <i class="el-icon-upload"></i>
+          <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+        </el-upload>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Home',
-  data () {
-    return {
-
-    }
-  }
+  name: "HomeImage"
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .breadcrumb {
   max-width: 100%;
   min-width: 1550px;
   max-height: 40px;
   min-height: 35px;
-  background-color: #8cc5ff;
+  margin-top: 1px;
 }
 .breadcrumb-content {
   width: 90%;
   max-height: 40px;
   min-height: 35px;
   margin: 0 auto;
-  background-color: #8cc5ff;
 }
 .upload-content {
   max-width: 100%;

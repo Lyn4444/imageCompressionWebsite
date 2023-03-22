@@ -1,5 +1,5 @@
 <template>
-  <div id="login">
+  <div id="register">
 <!--    <div class="breadcrumb">-->
 <!--      <div class="breadcrumb-content">-->
 <!--        <el-breadcrumb separator="/" style="max-height: 39px;min-height: 34px;">-->
@@ -8,49 +8,60 @@
 <!--              <span style="font-family: 楷体,serif;font-size: x-large;">首页</span>-->
 <!--            </template>-->
 <!--          </el-breadcrumb-item>-->
-<!--          <el-breadcrumb-item :to="{path: '/login'}">-->
+<!--          <el-breadcrumb-item :to="{path: '/register'}">-->
 <!--            <template>-->
-<!--              <span style="font-family: 楷体,serif;font-size: x-large;">登录</span>-->
+<!--              <span style="font-family: 楷体,serif;font-size: x-large;">注册</span>-->
 <!--            </template>-->
 <!--          </el-breadcrumb-item>-->
 <!--          <el-breadcrumb-item></el-breadcrumb-item>-->
 <!--        </el-breadcrumb>-->
 <!--      </div>-->
 <!--    </div>-->
-    <div class="login_area">
+    <div class="register_area">
       <div class="box_area">
         <div class="box">
           <el-card class="box_card" shadow="hover">
             <div class="tittle">
-              <p>登录</p>
+              <p>注册</p>
             </div>
             <div class="box_content">
-              <el-form ref="dl_form" :model="dl_form" label-width="80px" label-position="left">
+              <el-form ref="dl_form" :model="zc_form" label-width="90px" label-position="left">
                 <el-form-item label="账号名">
                   <template #label>
                     <span style="font-family: 楷体,serif;font-size: large;">用户名</span>
                   </template>
-                  <el-input v-model="dl_form.name"></el-input>
+                  <el-input v-model="zc_form.name" clearable></el-input>
                 </el-form-item>
                 <el-form-item label="邮箱">
                   <template #label>
                     <span style="font-family: 楷体,serif;font-size: large;">邮箱</span>
                   </template>
-                  <el-input v-model="dl_form.email"></el-input>
+                  <el-input v-model="zc_form.email" clearable></el-input>
+                </el-form-item>
+                <el-form-item>
+                  <template>
+                    <el-input v-model="zc_form.num" clearable placeholder="验证码" style="width: 60%;margin-right: 12px;"/><el-button type="primary" plain >获取验证码</el-button>
+                  </template>
                 </el-form-item>
                 <el-form-item label="密码">
                   <template #label>
                     <span style="font-family: 楷体,serif;font-size: large;">密码</span>
                   </template>
-                  <el-input v-model="dl_form.passwd" show-password></el-input>
+                  <el-input v-model="zc_form.passwd" show-password clearable></el-input>
+                </el-form-item>
+                <el-form-item label="确认密码">
+                  <template #label>
+                    <span style="font-family: 楷体,serif;font-size: large;">确认密码</span>
+                  </template>
+                  <el-input v-model="zc_form.passwd1" show-password clearable></el-input>
                 </el-form-item>
                 <el-form-item>
-                  <el-button type="primary" round style="margin-right: 40px;">
+                  <el-button type="primary" round style="margin-right: 40px;" @click="click_dl">
                     <template>
                       <span style="font-family: 楷体,serif;font-size: large;margin: 0 10px 0 10px;">登录</span>
                     </template>
                   </el-button>
-                  <el-button type="success" round @click="click_zc">
+                  <el-button type="success" round >
                     <template>
                       <span style="font-family: 楷体,serif;font-size: large;margin: 0 10px 0 10px;">注册</span>
                     </template>
@@ -72,21 +83,23 @@
 
 <script>
 export default {
-  name: "Login",
+  name: "Register",
   data() {
     return {
-      dl_form: {
+      zc_form: {
         name: '',
         email: '',
-        passwd: ''
+        num: '',
+        passwd: '',
+        passwd1: ''
       }
     }
   },
   methods: {
-    click_zc() {
+    click_dl() {
       const this_url = this.$route.path
-      if (this_url === '/login') {
-        this.$router.push('/register')
+      if (this_url === '/register') {
+        this.$router.push('/login')
       }
     },
     click_forget() {
@@ -110,7 +123,7 @@ export default {
   min-height: 35px;
   margin: 0 auto;
 }
-.login_area {
+.register_area {
   display: flex;
   max-width: 100%;
   min-width: 1550px;
