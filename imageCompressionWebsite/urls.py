@@ -20,11 +20,13 @@ from .views import redirect_view_home
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('api/', include('option.urls')),
-    # path('', redirect_view_home),
+    path('', redirect_view_home),
     path('home/', TemplateView.as_view(template_name="index.html")),
-    path('login/', include('login.urls')),
+    path('login/', TemplateView.as_view(template_name="index.html")),
     path('register/', TemplateView.as_view(template_name="index.html")),
     path('forget/', TemplateView.as_view(template_name="index.html")),
-    # path('home-image/', TemplateView.as_view(template_name="index.html")),
+    path('home-image/', TemplateView.as_view(template_name="index.html")),
+    path('api/option/', include('option.urls')),
+    path('api/login/', include('login.urls')),
+    path('api/register/', include('register.urls')),
 ]

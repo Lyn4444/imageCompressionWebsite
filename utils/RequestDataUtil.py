@@ -1,4 +1,4 @@
-from DataUtils import CreateData
+from utils.DataUtils import *
 
 
 class CreateRequestData(object):
