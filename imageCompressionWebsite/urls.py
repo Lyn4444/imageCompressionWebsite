@@ -23,5 +23,8 @@ urlpatterns = [
     path('api/', include('option.urls')),
     path('', redirect_view_home),
     path(r'home/', TemplateView.as_view(template_name="index.html")),
-    path(r'login/', TemplateView.as_view(template_name="index.html")),
+    path(r'login/', include('login.urls')),
+    path(r'register/', TemplateView.as_view(template_name="index.html")),
+    path(r'forget/', TemplateView.as_view(template_name="index.html")),
+    path(r'home-image/', TemplateView.as_view(template_name="index.html")),
 ]

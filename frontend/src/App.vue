@@ -157,7 +157,7 @@ html,body{
   min-height: 70px;
 }
 .el-menu.el-menu--horizontal {
-  border-bottom: none;
+  border-bottom: 0;
 }
 .manage {
   max-height: 80px;
