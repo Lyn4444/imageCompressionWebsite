@@ -21,10 +21,10 @@ from .views import redirect_view_home
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('api/', include('option.urls')),
-    path('', redirect_view_home),
-    path(r'home/', TemplateView.as_view(template_name="index.html")),
-    path(r'login/', include('login.urls')),
-    path(r'register/', TemplateView.as_view(template_name="index.html")),
-    path(r'forget/', TemplateView.as_view(template_name="index.html")),
-    path(r'home-image/', TemplateView.as_view(template_name="index.html")),
+    # path('', redirect_view_home),
+    path('home/', TemplateView.as_view(template_name="index.html")),
+    path('login/', include('login.urls')),
+    path('register/', TemplateView.as_view(template_name="index.html")),
+    path('forget/', TemplateView.as_view(template_name="index.html")),
+    # path('home-image/', TemplateView.as_view(template_name="index.html")),
 ]

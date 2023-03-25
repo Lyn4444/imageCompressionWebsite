@@ -10,12 +10,12 @@ def login(request):
     _json = CreateJson()
     data = CreateRequestData()
     emulate = Emulate()
-    if request.method != "post":
+    if request.method == "GET":
         data.setCode(emulate.ERRORREQUESTCODE)
-        data.setCode(emulate.ERRORPARAMMSG)
+        data.setMsg(emulate.ERRORPARAMMSG)
         return HttpResponse(_json.dict2json(data.getRequestData()), content_type="application/json")
     else:
-        print(request.POST)
+        # print(request.body)
         data.setCode(emulate.OKCODE)
-        data.setCode(emulate.OKMSG)
+        data.setMsg(emulate.OKMSG)
         return HttpResponse(_json.dict2json(data.getRequestData()), content_type="application/json")
