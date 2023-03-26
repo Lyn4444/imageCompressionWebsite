@@ -29,4 +29,6 @@ urlpatterns = [
     path('api/option/', include('option.urls')),
     path('api/login/', include('login.urls')),
     path('api/register/', include('register.urls')),
+    path('api/forget/', include('forget.urls')),
+    path('api/utils/', include('utils_app.urls')),
 ]

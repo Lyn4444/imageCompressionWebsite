@@ -16,7 +16,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -27,7 +26,6 @@ SECRET_KEY = "django-insecure-lnnns-^5qw3+2xs4z1o*m6d$r!b9*#*q^l#_m+3q7(rh-&r)0f
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -40,7 +38,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "option.apps.OptionConfig",
     "login.apps.LoginConfig",
-    "register.apps.RegisterConfig"
+    "register.apps.RegisterConfig",
+    "forget.apps.ForgetConfig"
 ]
 
 MIDDLEWARE = [
@@ -49,7 +48,7 @@ MIDDLEWARE = [
 
     # vue跨越中间件
     "corsheaders.middleware.CorsMiddleware",
-    
+
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -86,7 +85,6 @@ STATICFILES_DIRS = [
 
 WSGI_APPLICATION = "imageCompressionWebsite.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -96,7 +94,6 @@ DATABASES = {
         "NAME": os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -116,7 +113,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -128,7 +124,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
@@ -138,3 +133,10 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+EMAIL_USE_SSL = True
+EMAIL_HOST = 'smtp.qq.com'  # 如果是 163 改成 smtp.163.com
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'xy424424stjoe@qq.com'  # 帐号
+EMAIL_HOST_PASSWORD = 'jvwpnzevnrqcdfcd'  # 密码
+DEFAULT_FROM_EMAIL = 'PicSmart <xy424424stjoe@qq.com>'

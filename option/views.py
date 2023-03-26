@@ -2,15 +2,26 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse, JsonResponse
+
+from utils.Emulate import Emulate
+from utils.RequestDataUtil import CreateRequestData
 from utils.JsonUtils import CreateJson
 
 
-def index(request):
-    data = {
-        'patient_name': '张三',
-        'age': '25',
-        'patient_id': '19000347',
-        '诊断': '上呼吸道感染',
-    }
+def login(request):
     _json = CreateJson()
-    return HttpResponse(_json.dict2json(data), content_type="application/json")
+    data = CreateRequestData()
+    emulate = Emulate()
+    print("get login")
+    if request.method != "GET":
+        data.setCode(emulate.ERRORREQUESTCODE)
+        data.setMsg(emulate.ERRORPARAMMSG)
+        return HttpResponse(_json.dict2json(data.getRequestData()), content_type="application/json")
+    else:
+        print(request)
+        get_data = request.GET.dict()
+        print("get_data: " + str(get_data))
+        data.setCode(emulate.OKCODE)
+        data.setMsg(emulate.OKMSG)
+        return HttpResponse(_json.dict2json(data.getRequestData()), content_type="application/json")
+

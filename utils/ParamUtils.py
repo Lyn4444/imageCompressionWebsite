@@ -24,3 +24,11 @@ def EncryptMD5(passwd=str, salt=str) -> str:
     tmp.update(passwd.encode('utf-8'))
     res = tmp.hexdigest()
     return res
+
+
+def CreateCode() -> str:
+    res = ""
+    for i in range(6):
+        ch = chr(random.randrange(ord('0'), ord('9') + 1))
+        res += ch
+    return res
