@@ -1,4 +1,4 @@
-# frontend
+# PicSmart
 
 > A Vue.js project
 
