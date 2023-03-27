@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     "option.apps.OptionConfig",
     "login.apps.LoginConfig",
     "register.apps.RegisterConfig",
-    "forget.apps.ForgetConfig"
+    "forget.apps.ForgetConfig",
+    "corsheaders"
 ]
 
 MIDDLEWARE = [
@@ -145,10 +146,31 @@ CACHES = {
     }
 }
 
-
 EMAIL_USE_SSL = True
 EMAIL_HOST = 'smtp.qq.com'  # 如果是 163 改成 smtp.163.com
 EMAIL_PORT = 465
 EMAIL_HOST_USER = 'xy424424stjoe@qq.com'  # 帐号
 EMAIL_HOST_PASSWORD = 'jvwpnzevnrqcdfcd'  # 密码
 DEFAULT_FROM_EMAIL = 'PicSmart <xy424424stjoe@qq.com>'
+
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_HEADERS = (
+    'x-requested-with',
+    'content-type',
+    'accept',
+    'origin',
+    'authorization',
+    'x-csrftoken'
+)
+
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+    'VIEW',
+)

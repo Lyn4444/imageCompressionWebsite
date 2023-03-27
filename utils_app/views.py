@@ -51,7 +51,8 @@ def get_email(request):
                         return HttpResponse(_json.dict2json(data.getRequestData()), content_type="application/json")
                     else:
                         code = CreateCode()
-                        cache.set(str(get_email), code, timeout=60)
+                        cache.set(str(get_email), code, timeout=300)
+                        cache.expire(str(get_email), timeout=300)
                         from_email = settings.DEFAULT_FROM_EMAIL
                         subject = '你的一次性代码'
                         text_content = str(
@@ -121,7 +122,7 @@ def set_email(request):
                     origin_code = cache.get(str(post_email))
                     print("email: " + str(post_email) + "\tcode: " + post_code + "\torigin code: " + str(origin_code))
                     if str(origin_code) == post_code:
-                        cache.delete(str(get_email))
+                        cache.delete(str(post_email))
                         data.setCode(emulate.OKCODE)
                         data.setMsg(emulate.OKMSG)
                         print("success: " + emulate.OKMSG)

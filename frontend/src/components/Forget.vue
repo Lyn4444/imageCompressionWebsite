@@ -22,7 +22,7 @@
         <div class="box">
           <el-card class="box_card" shadow="hover">
             <div class="box_content">
-              <el-form ref="dl_form" :model="fg_form" label-width="90px" label-position="left">
+              <el-form ref="fg_form" :model="fg_form" label-width="90px" label-position="left">
                 <el-form-item label="账号名">
                   <template #label>
                     <span style="font-family: 楷体,serif;font-size: large;">用户名</span>

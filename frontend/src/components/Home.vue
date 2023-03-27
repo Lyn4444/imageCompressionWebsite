@@ -32,6 +32,11 @@ export default {
     return {
 
     }
+  },
+  methods: {
+
+  },
+  created() {
   }
 }
 </script>

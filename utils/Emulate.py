@@ -13,7 +13,7 @@ class Emulate:
         self.ERRORPARAMMSG = "请求参数错误"
         self.ERRORREPEATCODE = "502"
         self.ERRORREPEATMSG = "请求重复"
-        self.ERRORNOCONTENTCODE = "502"
+        self.ERRORNOCONTENTCODE = "503"
         self.ERRORNOCONTENTMSG = "请求参数为空"
         self.ERRORNODATACODE = "400"
         self.ERRORNODATAMSG = "请求数据不存在"

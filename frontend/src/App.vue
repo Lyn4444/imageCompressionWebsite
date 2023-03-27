@@ -91,6 +91,12 @@ export default {
       isDone: true
     }
   },
+  mounted() {
+    console.log("mounted");
+    if (window.sessionStorage.getItem("isLogin") === "1") {
+      this.isLogin = true
+    }
+  },
   methods: {
     toHome() {
       this.$router.push("/home")

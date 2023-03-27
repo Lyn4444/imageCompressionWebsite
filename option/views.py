@@ -13,15 +13,7 @@ def login(request):
     data = CreateRequestData()
     emulate = Emulate()
     print("get login")
-    if request.method != "GET":
-        data.setCode(emulate.ERRORREQUESTCODE)
-        data.setMsg(emulate.ERRORPARAMMSG)
-        return HttpResponse(_json.dict2json(data.getRequestData()), content_type="application/json")
-    else:
-        print(request)
-        get_data = request.GET.dict()
-        print("get_data: " + str(get_data))
-        data.setCode(emulate.OKCODE)
-        data.setMsg(emulate.OKMSG)
-        return HttpResponse(_json.dict2json(data.getRequestData()), content_type="application/json")
+    data.setCode(emulate.OKCODE)
+    data.setMsg(emulate.OKMSG)
+    return HttpResponse(_json.dict2json(data.getRequestData()), content_type="application/json")
 
