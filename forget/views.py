@@ -17,13 +17,18 @@ def forget(request):
     data = CreateRequestData()
     emulate = Emulate()
     print("post forget")
+    post_data = request.POST.dict()
     if request.method != "POST":
         data.setCode(emulate.ERRORREQUESTCODE)
         data.setMsg(emulate.ERRORPARAMMSG)
         print("error: " + emulate.ERRORPARAMMSG)
         return HttpResponse(_json.dict2json(data.getRequestData()), content_type="application/json")
+    elif not ContentCheck(post_data):
+        data.setCode(emulate.ERRORNOCONTENTCODE)
+        data.setMsg(emulate.ERRORNOCONTENTMSG)
+        print("error: " + emulate.ERRORNOCONTENTMSG)
+        return HttpResponse(_json.dict2json(data.getRequestData()), content_type="application/json")
     else:
-        post_data = request.POST.dict()
         print("post_data: " + str(post_data))
         if not post_data or not ParamCheck(emulate.login_param, post_data):
             data.setCode(emulate.ERRORPARAMCODE)

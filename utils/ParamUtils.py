@@ -10,6 +10,13 @@ def ParamCheck(target_dict=list, origin_dict=dict) -> bool:
     return True
 
 
+def ContentCheck(content=dict) -> bool:
+    for key, value in content.items():
+        if not value:
+            return False
+    return True
+
+
 def CreateSalt(num=int) -> str:
     uln = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()_+"
     rs = random.sample(uln, num)
@@ -28,7 +35,7 @@ def EncryptMD5(passwd=str, salt=str) -> str:
 
 def CreateCode() -> str:
     res = ""
-    for i in range(6):
+    for i in range(7):
         ch = chr(random.randrange(ord('0'), ord('9') + 1))
         res += ch
     return res

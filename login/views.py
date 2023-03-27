@@ -32,6 +32,11 @@ def login(request):
             data.setMsg(emulate.ERRORPARAMMSG)
             print("error: " + emulate.ERRORPARAMMSG)
             return HttpResponse(_json.dict2json(data.getRequestData()), content_type="application/json")
+        elif not ContentCheck(get_data):
+            data.setCode(emulate.ERRORNOCONTENTCODE)
+            data.setMsg(emulate.ERRORNOCONTENTMSG)
+            print("error: " + emulate.ERRORNOCONTENTMSG)
+            return HttpResponse(_json.dict2json(data.getRequestData()), content_type="application/json")
         else:
             get_name = get_data['name']
             get_email = get_data['email']

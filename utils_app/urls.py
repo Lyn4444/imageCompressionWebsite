@@ -2,5 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('email/', views.email, name='email')
+    path('get-email/', views.get_email, name='get-email'),
+    path('set-email/', views.set_email, name='set-email')
 ]
