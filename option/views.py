@@ -46,15 +46,13 @@ def do_first(request):
                     res = os.system("python module/generate_map.py " + filepath)
                     if res == 0:
                         print("second command: " + "python module/combine_images.py -image " + filepath
-                              + " -map  module/output/msroi_map_" + str(get_name))
+                              + " -map  module/output/msroi_map_" + str(get_name).split(".")[0] + ".jpg")
                         res1 = os.system("python module/combine_images.py -image " + filepath
-                                         + " -map  module/output/msroi_map_" + str(get_name))
+                                         + " -map  module/output/msroi_map_" + str(get_name).split(".")[0] + ".jpg")
                         if res1 == 0:
                             data.setCode(emulate.OKCODE)
                             data.setMsg(emulate.OKMSG)
-                            res_file_name = "_original_" + str(get_name) + "_50.jpg"
-                            file_data = {"filename": res_file_name}
-                            data.setData(file_data)
+                            data.setData({"filename": "_original_" + str(get_name) + "_50.jpg"})
                             print("success: " + emulate.OKMSG)
                             return HttpResponse(_json.dict2json(data.getRequestData()), content_type="application/json")
                 except Exception as e:
