@@ -25,11 +25,23 @@
                      :file-list="fileList"
                      ref="upload" multiple v-loading.fullscreen.lock="fullscreenLoading">
             <i class="el-icon-upload"></i>
-            <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-            <div slot="tip" class="el-upload__tip">考虑网站负载暂时只能上传1张图片</div>
+            <div class="el-upload__text">
+              <template>
+                <span style="font-family: 楷体,serif;font-size: large;margin: 0 10px 0 10px;">将文件拖到此处，或<em>点击上传</em></span>
+              </template>
+            </div>
+            <div slot="tip" class="el-upload__tip">
+              <template>
+                <span style="font-family: 楷体,serif;font-size: medium;margin: 0 10px 0 10px;">考虑网站负载暂时只能上传1张图片</span>
+              </template>
+            </div>
           </el-upload>
           <div class="button-box">
-            <el-button type="primary" style="margin: 0 auto;" @click="submitUpload">点击上传</el-button>
+            <el-button type="primary" style="margin: 0 auto;" @click="submitUpload" plain>
+              <template>
+                <span style="font-family: 楷体,serif;font-size: large;margin: 0 10px 0 10px;">点击上传</span>
+              </template>
+            </el-button>
           </div>
         </div>
       </div>
@@ -49,6 +61,12 @@ export default {
       fullscreenLoading: false,
       resfilename: ""
     }
+  },
+  mounted() {
+    this.$notify.info({
+      title: "PicSmart",
+      message: "在线图片高清压缩"
+    })
   },
   methods: {
     submitUpload() {
@@ -162,6 +180,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+#home {
+  max-width: 100%;
+  min-width: 1550px;
+  min-height: 1000px;
+}
+
 .breadcrumb {
   max-width: 100%;
   min-width: 1550px;
@@ -181,8 +205,9 @@ export default {
 .upload-content {
   max-width: 100%;
   min-width: 1550px;
-  max-height: 550px;
-  min-height: 500px;
+  /*max-height: 550px;*/
+  /*min-height: 500px;*/
+  min-height: 1000px;
   background-color: #8cc5ff;
 }
 
