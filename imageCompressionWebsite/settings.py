@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "register.apps.RegisterConfig",
     "forget.apps.ForgetConfig",
     "file.apps.FileConfig",
+    "doready.apps.DoreadyConfig",
     "corsheaders"
 ]
 
