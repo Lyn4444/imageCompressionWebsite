@@ -21,10 +21,12 @@
                      :on-preview="handlePreview"
                      :auto-upload="false"
                      :on-remove="handleRemove"
+                     :on-change="handleChange"
                      :file-list="fileList"
                      ref="upload" multiple v-loading.fullscreen.lock="fullscreenLoading">
             <i class="el-icon-upload"></i>
             <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+            <div slot="tip" class="el-upload__tip">考虑网站负载暂时只能上传1张图片</div>
           </el-upload>
           <div class="button-box">
             <el-button type="primary" style="margin: 0 auto;" @click="submitUpload">点击上传</el-button>
@@ -43,8 +45,9 @@ export default {
     return {
       action: "http://127.0.0.1:8000/api/file/upload/",
       fileList: [],
-      filenamelist: [],
-      fullscreenLoading: false
+      filenamelist: "",
+      fullscreenLoading: false,
+      resfilename: ""
     }
   },
   methods: {
@@ -68,20 +71,59 @@ export default {
             message: "图片上传成功，正在处理，请稍后......"
           })
           this.openFullScreen();
+          this.$axios.get("option/do-first/", {
+            params: {
+              "filename": this.filenamelist
+            }
+          }).then(res => {
+            switch (res.data['code']) {
+              case "500":
+                this.$message.error(res.data['msg']);
+                break;
+              case "503":
+                this.$message.error(res.data['msg']);
+                break;
+              case "402":
+                this.$message.error("未知错误，请联系网站管理员");
+                break;
+              case "400":
+                this.$message.error("图片上传失败，请联系网站管理员");
+                break;
+              default:
+                this.resfilename = res.data['data']['filename']
+                console.log(this.resfilename)
+                this.$notify.success({
+                  title: "PicSmart",
+                  message: "图片压缩完成，自动下载"
+                })
+                this.$axios({
+                  method: "get",
+                  url: "file/download/",
+                  responseType: 'blob',
+                  params: {
+                    "filename": this.resfilename
+                  }
+                }).then(res => {
+                  let url = window.URL.createObjectURL(res.data)
+                  const link = document.createElement('a');
+                  link.href = url
+                  link.download = this.resfilename
+                  link.click()
+                  this.fullscreenLoading = false
+                })
+            }
+          })
       }
     },
     beforeUpload(file, fileList) {
-      console.log(file)
       const littleName = file.name.toLowerCase()
       const copyFile = new File([file], littleName)
       this.handlePddUploadFile(copyFile)
       return false
     },
     handleRemove(file, fileList) {
-      console.log(file);
     },
     handlePreview(file, fileList) {
-      console.log(file);
     },
     handlePddUploadFile(copyFile) {
       const formData = new FormData()
@@ -90,7 +132,7 @@ export default {
       let type = filename.split(".")[1]
       let randomNum = Math.random().toFixed(10).slice(-10);
       let newfilename = randomNum + "." + type
-      this.filenamelist.push(newfilename)
+      this.filenamelist = newfilename
       formData.append('filename', newfilename)
       this.handlePddPostForm(formData)
     },
@@ -105,12 +147,15 @@ export default {
         this.$message.error("未知错误，请联系网站管理员")
       }
     },
+    handleChange(file, fileList) {
+      this.fileList = fileList.slice(-1);
+    },
     openFullScreen() {
-        this.fullscreenLoading = true;
-        setTimeout(() => {
-          this.fullscreenLoading = false;
-        }, 10000);
-      }
+      this.fullscreenLoading = true;
+      setTimeout(() => {
+        this.fullscreenLoading = false;
+      }, 60000);
+    }
   },
 }
 </script>

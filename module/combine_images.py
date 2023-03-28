@@ -49,7 +49,7 @@ def make_quality_compression(original, sal):
     # this temp directory will be deleted, do not use this to store your files
     os.makedirs('temp_xxx_yyy')
     for q in quality_steps:
-        name = 'temp_xxx_yyy/temp_' + str(q) + '.jpg'
+        name = 'temp_xxx_yyy/temp_' + str(q) + ".jpg"
         if args.use_convert:
             os.system('convert -colorspace sRGB -filter Lanczos -interlace Plane -type truecolor -quality ' + str(
                 q) + ' ' + args.image + ' ' + name)
@@ -135,19 +135,19 @@ def make_quality_compression(original, sal):
 
     # save the original file at the given quality level
     compressed = args.output_directory + '/' + '_original_' + args.image.split('/')[-1] + '_' + str(
-        args.jpeg_compression) + '.jpg'
+        args.jpeg_compression) + ".jpg"
     original.save(compressed, quality=args.jpeg_compression)
 
     original_size = os.path.getsize(compressed)
-    print("temp image " + args.image)
-    os.system('magick ' + args.image + " " + args.output_directory + '/temp.png')
-    uncompressed_size = os.path.getsize(args.output_directory + '/temp.png')
+    print("origin image: " + args.image)
+    os.system('magick ' + args.image + " " + args.output_directory + '/temp.jpg')
+    uncompressed_size = os.path.getsize(args.output_directory + '/temp.jpg')
     # os.remove(args.output_directory + '/temp.png')
 
     out_img = array2PIL(k)
 
     if args.find_best:
-        out_name = args.output_directory + '/' + '_compressed_' + args.image.split('/')[-1] + '_' + '.jpg'
+        out_name = args.output_directory + '/' + '_compressed_' + args.image.split('/')[-1] + '_' + ".jpg"
         for qual in range(90, 20, -1):
             out_img.save(out_name, quality=qual)
             current_size = os.path.getsize(out_name)
@@ -164,7 +164,7 @@ def make_quality_compression(original, sal):
     else:
         final_quality = [100, 85, 65, 45]
         for fq in final_quality:
-            out_name = args.output_directory + '/' + args.modifier + args.image.split('/')[-1] + '_' + str(fq) + '.jpg'
+            out_name = args.output_directory + '/' + args.modifier + args.image.split('/')[-1] + '_' + str(fq) + ".jpg"
             out_img.save(out_name, quality=fq)
     return compressed, out_name
 

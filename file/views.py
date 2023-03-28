@@ -62,25 +62,26 @@ def download(request):
     _json = CreateJson()
     data = CreateRequestData()
     emulate = Emulate()
-    print("post download")
+    print("get download")
     if request.method != "GET":
         data.setCode(emulate.ERRORREQUESTCODE)
         data.setMsg(emulate.ERRORPARAMMSG)
         print("error: " + emulate.ERRORPARAMMSG)
         return HttpResponse(_json.dict2json(data.getRequestData()), content_type="application/json")
     else:
-        file_path = "module/input/"
+        file_path = "module/output/"
         get_data = request.GET.dict()
-        print("get_data: " + str(get_data))
         if get_data and 'filename' in get_data:
             file_path = file_path + str(get_data['filename'])
+            print("get_data: " + file_path)
             if os.path.exists(file_path):
                 try:
                     with open(file_path, "rb") as f:
                         content = f.read()
-                    response = FileResponse(content)
-                    response["Content-Type"] = "application/octet-stream"
-                    response["Content-Disposition"] = 'attachment; filename=' + str(get_data['filename'])
+                    response = HttpResponse(content)
+                    file_name = file_path.split('/')[-1]
+                    response['Content-Type'] = 'application/octet-stream'
+                    response['Content-Disposition'] = 'attachment;filename={}'.format(file_name)
                     return response
                 except:
                     data.setCode(emulate.ERRORINTERIORCODE)
