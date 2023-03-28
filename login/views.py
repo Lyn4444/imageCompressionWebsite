@@ -69,3 +69,4 @@ def login(request):
                 data.setMsg(emulate.ERRORNODATAMSG)
                 print("error: " + emulate.ERRORNODATAMSG)
                 return HttpResponse(_json.dict2json(data.getRequestData()), content_type="application/json")
+

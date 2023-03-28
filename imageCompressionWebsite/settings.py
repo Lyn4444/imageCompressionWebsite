@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "login.apps.LoginConfig",
     "register.apps.RegisterConfig",
     "forget.apps.ForgetConfig",
+    "file.apps.FileConfig",
     "corsheaders"
 ]
 

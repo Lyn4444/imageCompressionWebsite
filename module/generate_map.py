@@ -70,7 +70,7 @@ plt.imshow(roi_map, cmap=plt.cm.jet, interpolation='nearest')
 plt.imshow(image[0], alpha=0.4)
 
 # save the plot and the map
-if not os.path.exists('output'):
-    os.makedirs('output')
-plt.savefig('output/overlayed_heatmap.png')
-skimage.io.imsave('output/msroi_map.jpg', roi_map)
+if not os.path.exists('module/output'):
+    os.makedirs('module/output')
+plt.savefig('module/output/overlayed_heatmap_' + str(sys.argv[1].split("/")[-1].split(".")[0]) + ".png")
+skimage.io.imsave('module/output/msroi_map_' + str(sys.argv[1].split("/")[-1].split(".")[0]) + '.jpg', roi_map)

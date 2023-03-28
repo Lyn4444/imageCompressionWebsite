@@ -31,4 +31,5 @@ urlpatterns = [
     path('api/register/', include('register.urls')),
     path('api/forget/', include('forget.urls')),
     path('api/utils/', include('utils_app.urls')),
+    path('api/file/', include('file.urls')),
 ]

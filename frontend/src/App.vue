@@ -63,9 +63,9 @@
                           <span style="font-family: 楷体, serif;font-size: medium">我的账号</span>
                         </template>
                       </el-dropdown-item>
-                      <el-dropdown-item icon="el-icon-switch-button">
+                      <el-dropdown-item icon="el-icon-switch-button" @click="out_login">
                         <template>
-                          <span style="font-family: 楷体, serif;font-size: medium">退出登录</span>
+                          <span style="font-family: 楷体, serif;font-size: medium" @click="out_login">退出登录</span>
                         </template>
                       </el-dropdown-item>
                     </el-dropdown-menu>
@@ -106,6 +106,10 @@ export default {
     },
     toRegister() {
       this.$router.push("/register")
+    },
+    out_login() {
+      window.sessionStorage.clear();
+      location.reload()
     }
   }
 }

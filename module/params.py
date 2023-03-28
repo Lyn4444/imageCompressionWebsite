@@ -5,8 +5,8 @@ class HyperParams():
     def __init__(self, verbose):
         # Hard params and magic numbers
         self.sparse = True
-        self.vgg_weights = './data/caffe_layers_value.pickle'
-        self.model_path = 'models/model-50'
+        self.vgg_weights = 'module/data/caffe_layers_value.pickle'
+        self.model_path = 'module/models/model-50'
         self.n_labels = 257
         self.top_k = 5
         self.stddev = 0.2
@@ -24,7 +24,7 @@ class HyperParams():
 
 class TrainingParams:
     def __init__(self, verbose):
-        self.model_path = './models/'
+        self.model_path = 'module/models/'
         self.num_epochs = 200
         self.learning_rate = 0.002
         self.weight_decay_rate = 0.0005
@@ -32,9 +32,9 @@ class TrainingParams:
         self.batch_size = 32
         self.max_iters = 200000
         self.test_every_iter = 200
-        self.data_train_path = 'data/train.pickle'
-        self.data_test_path = 'data/test.pickle'
-        self.images_path = 'cifar10'
+        self.data_train_path = 'module/data/train.pickle'
+        self.data_test_path = 'module/data/test.pickle'
+        self.images_path = 'module/cifar10'
         self.resume_training = False
         self.on_resume_fix_lr = False
         self.change_lr_env = False

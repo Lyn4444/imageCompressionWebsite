@@ -44,7 +44,8 @@ def forget(request):
                 dict_data = tmp.toJSON()
                 salt = CreateSalt(32)
                 passwd = EncryptMD5(post_passwd, salt)
-                if models.UserInfo.objects.update(salt=salt) and models.UserInfo.objects.update(passwd=passwd):
+                if models.UserInfo.objects.filter(name=post_name, email=post_email).update(salt=salt) \
+                        and models.UserInfo.objects.filter(name=post_name, email=post_email).update(passwd=passwd):
                     data.setCode(emulate.OKCODE)
                     data.setMsg(emulate.OKMSG)
                     print("success: " + emulate.OKMSG)

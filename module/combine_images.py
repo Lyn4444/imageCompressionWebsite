@@ -10,8 +10,8 @@ from scipy.stats import percentileofscore
 parser = argparse.ArgumentParser()
 
 parser.add_argument('-image', type=str, default='test.jp2')
-parser.add_argument('-map', type=str, default='./output/msroi_map.jpg')
-parser.add_argument('-output_directory', type=str, default='output')
+parser.add_argument('-map', type=str, default='module/output/msroi_map.jpg')
+parser.add_argument('-output_directory', type=str, default='module/output')
 parser.add_argument('-modifier', type=str, default='')
 parser.add_argument('-find_best', type=int, default=1)
 
