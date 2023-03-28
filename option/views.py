@@ -68,6 +68,29 @@ def do_first(request):
                 return HttpResponse(_json.dict2json(data.getRequestData()), content_type="application/json")
 
 
-@csrf_exempt
-def do_second(request):
-    return None
+# @csrf_exempt
+# def do_second(request):
+#     request.encoding = 'utf-8'
+#     _json = CreateJson()
+#     data = CreateRequestData()
+#     emulate = Emulate()
+#     print("get do_second")
+#     if request.method != "GET":
+#         data.setCode(emulate.ERRORREQUESTCODE)
+#         data.setMsg(emulate.ERRORPARAMMSG)
+#         print("error: " + emulate.ERRORPARAMMSG)
+#         return HttpResponse(_json.dict2json(data.getRequestData()), content_type="application/json")
+#     else:
+#         get_data = request.GET.dict()
+#         print("get_data: " + str(get_data))
+#         if not get_data or "type" not in get_data:
+#             data.setCode(emulate.ERRORNOCONTENTCODE)
+#             data.setMsg(emulate.ERRORNOCONTENTMSG)
+#             print("error: " + emulate.ERRORNOCONTENTMSG)
+#             return HttpResponse(_json.dict2json(data.getRequestData()), content_type="application/json")
+#         elif not ContentCheck(get_data):
+#             data.setCode(emulate.ERRORNOCONTENTCODE)
+#             data.setMsg(emulate.ERRORNOCONTENTMSG)
+#             print("error: " + emulate.ERRORNOCONTENTMSG)
+#             return HttpResponse(_json.dict2json(data.getRequestData()), content_type="application/json")
+#         else:
