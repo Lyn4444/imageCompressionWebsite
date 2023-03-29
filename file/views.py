@@ -71,6 +71,9 @@ def download(request):
     else:
         file_path = "module/output/"
         get_data = request.GET.dict()
+        if "type" in get_data:
+            if get_data['type'] == "1":
+                file_path = "module/output_type/"
         if get_data and 'filename' in get_data:
             file_path = file_path + str(get_data['filename'])
             print("get_data: " + file_path)

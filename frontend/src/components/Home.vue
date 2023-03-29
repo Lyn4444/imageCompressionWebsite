@@ -70,7 +70,12 @@ export default {
   },
   methods: {
     submitUpload() {
-      this.$refs.upload.submit();
+      if (this.fileList[0]) {
+          this.openFullScreen();
+        this.$refs.upload.submit();
+      } else {
+        this.$message.info("请选择图片上传")
+      }
     },
     handleUploadSuccess(response) {
       switch (response['code']) {
@@ -88,7 +93,6 @@ export default {
             title: "PicSmart",
             message: "图片上传成功，正在处理，请稍后......"
           })
-          this.openFullScreen();
           this.$axios.get("option/do-first/", {
             params: {
               "filename": this.filenamelist

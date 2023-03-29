@@ -55,12 +55,17 @@
                 <div class="dropdown">
                   <el-dropdown>
                     <template>
-                      <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" :size="60"></el-avatar>
+                      <el-avatar :src="src" :size="60"></el-avatar>
                     </template>
                     <el-dropdown-menu>
-                      <el-dropdown-item icon="el-icon-user">
+                      <el-dropdown-item icon="el-icon-user" @click="toInfo">
                         <template>
-                          <span style="font-family: 楷体, serif;font-size: medium">我的账号</span>
+                          <span style="font-family: 楷体, serif;font-size: medium"@click="toInfo">我的账号</span>
+                        </template>
+                      </el-dropdown-item>
+                      <el-dropdown-item icon="el-icon-warning-outline" @click="toAbout">
+                        <template>
+                          <span style="font-family: 楷体, serif;font-size: medium" @click="toAbout">关于我们</span>
                         </template>
                       </el-dropdown-item>
                       <el-dropdown-item icon="el-icon-switch-button" @click="out_login">
@@ -88,7 +93,8 @@ export default {
     return {
       activeIndex: ['/home', '/home-image'],
       isLogin: false,
-      isDone: true
+      isDone: true,
+      src: "https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
     }
   },
   mounted() {
@@ -110,6 +116,12 @@ export default {
     out_login() {
       window.sessionStorage.clear();
       location.reload()
+    },
+    toAbout() {
+      this.$router.push("/about")
+    },
+    toInfo() {
+      this.$router.push("/info")
     }
   }
 }

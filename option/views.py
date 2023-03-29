@@ -102,6 +102,7 @@ def do_second(request):
                     img.save(filename=new_filename)
                     data.setCode(emulate.OKCODE)
                     data.setMsg(emulate.OKMSG)
+                    data.setData({"filename": str(file_name).split(".")[0] + "." + _type})
                     print("success: " + emulate.OKMSG)
                     return HttpResponse(_json.dict2json(data.getRequestData()), content_type="application/json")
                 except:
